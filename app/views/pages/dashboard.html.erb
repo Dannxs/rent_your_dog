@@ -1,7 +1,7 @@
-<h1>Dashboard</h1>
 <div class="container">
+  <h2 class="dashboard-header">Dashboard</h2>
+  <h3>My Dogs</h3>
   <div class="my-dogs">
-    <h2>My Dogs</h2>
     <% current_user.dogs.each do |dog| %>
     <div class="my-dogs-card">
       <% if !dog.photos.empty? %>
@@ -19,41 +19,73 @@
         <%= link_to 'See', dog_path(dog), class: 'btn btn-primary' %>
         <%= link_to 'Edit', edit_dog_path(dog), class: 'btn btn-info' %>
         <%= link_to 'Delete', dog_path(dog), method: :delete, data: { confirm: 'Are you sure you want to delete this dog ?'}, class: 'btn btn-danger' %>
-      </div>
+        </div>
       </div>
     </div>
-    <% end %>
+
     <div class="my-dogs-requests">
-
+      <h4>Rental Requests</h4>
+      <div class="request-cards">
+        <% dog.bookings.each do |booking| %>
+        <div class="request-card">
+          <div class="request-card-left">
+          <% if booking.user.photo.attached? %>
+            <%= cl_image_tag booking.user.photo.key, class: 'avatar dropdown-toggle', id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <% else %>
+            <%= image_tag 'blank_avatar', class: 'avatar dropdown-toggle', id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% end %>
+          </div>
+          <div class="request-card-right">
+            <p>Request from <%= booking.user.first_name %> <%= booking.user.last_name %></p>
+            <p> From <%= booking.start_date %> to <%= booking.end_date %> </p>
+            <div class="request-card-buttons">
+              <% case booking.status %>
+              <% when 'pending' %>
+              <%= simple_form_for booking do |f| %>
+                <% f.button :submit, 'Accept', class: 'btn btn-success' %>
+              <% end %>
+              <%= simple_form_for booking do |f| %>
+                <% f.button :submit, 'Decline', class: 'btn btn-danger' %>
+              <% end %>
+              <% when 'accepted' %>
+              <p>You accepted this request</p>
+              <% when 'refused' %>
+              <p>You refused this request</p>
+              <% when 'cancelled' %>
+              <p>This request has been cancelled by <%= booking.user.first_name %></p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
     </div>
+
   </div>
-
-
-
-  <%= current_user.email %>
-
-  <% @dog = Dog.new(user_id: current_user.id) %>
-  <%= simple_form_for(@dog) do |f| %>
-    <%= f.label :name, :label => "Prénom" %>
-    <%= f.text_field :name %>
-    <%= f.label :age %>
-    <%= f.number_field :age, min: 0 %>
-    <%= f.label :color, :label => "Couleur" %>
-    <%= f.text_field :color %>
-    <%= f.label :breed, :label => "Race" %>
-    <%= f.text_field :breed %>
-    <%= f.input :size, :as => :select,
-              :collection => %w[Petite Moyenne Grande],
-              :label => "Taille" %>
-    <%= f.input :is_sterilized, :as => :select,
-              :collection => [['Non',false],['Oui',true]],
-              :include_blank => false,
-              :label => "Stérélisé(e)" %>
-    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-    <% @dog.photos.each do |photo| %>
-      <%= cl_image_tag photo.key, height: 200, width: 250, crop: :fill %>
-    <% end %>
-    <%= f.submit %>
+  <hr>
   <% end %>
+
+  <h3>Add a dog</h3>
+  <div class="add-a-dog-form">
+    <% @dog = Dog.new(user_id: current_user.id) %>
+    <%= simple_form_for(@dog) do |f| %>
+      <%= f.input :name, :label => "Prénom" %>
+      <%= f.input :age, :label => "Age", min: 0 %>
+      <%= f.input :color, label: "Couleur" %>
+      <%= f.input :breed, :label => "Race" %>
+      <%= f.input :size, :as => :select,
+                :collection => %w[Petite Moyenne Grande],
+                :label => "Taille" %>
+      <%= f.input :is_sterilized, :as => :select,
+                :collection => [['Non',false],['Oui',true]],
+                :include_blank => false,
+                :label => "Stérélisé(e)" %>
+      <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+      <% @dog.photos.each do |photo| %>
+        <%= cl_image_tag photo.key, height: 200, width: 250, crop: :fill %>
+      <% end %>
+      <%= f.submit %>
+    <% end %>
+  </div>
 </div>
 
