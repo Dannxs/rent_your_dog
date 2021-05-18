@@ -1,33 +1,28 @@
-.navbar {
-  background-color: $light-blue;
-  height: 80px;
-}
-
-.navbar-right {
-  a {
-    margin-right: 15px;
-    padding-bottom: 14px;
+.navbar ul {
+  display: flex;
+  li {
+    margin: auto 10px;
     color: $gray;
-    border-bottom: 3px solid $gray;
-    &:hover {
-      text-decoration: none;
-      color: $black;
-      border-bottom: 3px solid $black;
-    }
   }
 }
 
-
-
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
+.navbar a {
+  color: $gray;
+  &:hover {
+    text-decoration: none;
+    color: black;
+  }
 }
 
-.navbar-lewagon .navbar-collapse {
+.navbar-rent-your-dog {
+  justify-content: space-between;
+  background: $light-blue;
+}
+
+.navbar-rent-your-dog .navbar-collapse {
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
+.navbar-rent-your-dog .navbar-brand img {
   width: 40px;
 }
