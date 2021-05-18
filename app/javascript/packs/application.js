@@ -25,6 +25,8 @@ require("channels")
 // External imports
 import "bootstrap";
 import { initFlatpickr } from "../plugins/flatpickr";
+import { initTabsClick } from "../channels/dashboard-tabs";
+
 
 
 // Internal imports, e.g:
@@ -34,4 +36,5 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   initFlatpickr();
+  initTabsClick();
 });
