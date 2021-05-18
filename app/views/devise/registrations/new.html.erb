@@ -8,6 +8,29 @@
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "email" }%>
+    <%= f.input :first_name,
+                required: true,
+                autofocus: true,
+                :label => "Prénom"%>
+    <%= f.input :last_name,
+                required: true,
+                autofocus: true,
+                :label => "Nom"%>
+    <%= f.input :gender,
+                required: true,
+                :as => :select,
+                :collection => %w[Masculin Féminin],
+                autofocus: true,
+                :label => "Sexe"%>
+    <%= f.label :age, :label => "Age" %>
+    <%= f.number_field :age,
+                required: true,
+                autofocus: true,
+                min: 0 %>
+    <%= f.input :address,
+                required: true,
+                autofocus: true,
+                :label => "Adresse"%>                            
     <%= f.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
@@ -15,7 +38,10 @@
     <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
+    <%= f.input :photo, as: :file %>
   </div>
+
+  
 
   <div class="form-actions">
     <%= f.button :submit, "Sign up" %>

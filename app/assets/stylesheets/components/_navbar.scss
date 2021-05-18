@@ -1,12 +1,28 @@
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
+.navbar ul {
+  display: flex;
+  li {
+    margin: auto 10px;
+    color: $gray;
+  }
 }
 
-.navbar-lewagon .navbar-collapse {
+.navbar a {
+  color: $gray;
+  &:hover {
+    text-decoration: none;
+    color: black;
+  }
+}
+
+.navbar-rent-your-dog {
+  justify-content: space-between;
+  background: $light-blue;
+}
+
+.navbar-rent-your-dog .navbar-collapse {
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
+.navbar-rent-your-dog .navbar-brand img {
   width: 40px;
 }
