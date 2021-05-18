@@ -16,6 +16,7 @@ puts 'Creating fake users/dogs...'
     last_name: Faker::Name.last_name,
     address: Faker::Address.full_address,
     email: Faker::Internet.email,
+    password: "password123",
     gender: Faker::Gender.type,
     age: rand(18..70),
     rating: rand(0..5)
@@ -24,12 +25,13 @@ puts 'Creating fake users/dogs...'
     2.times do
       dog = Dog.new(
         name: Faker::FunnyName.name,
-        size: size.sample
+        size: size.sample,
         age: rand(1..15),
         color: Faker::Color.color_name,
         rating: rand(0..5),
         is_sterilized: Faker::Boolean.boolean,
-        user_id: user.id
+        user_id: user.id,
+        breed: Faker::Creature::Dog.breed
       )
       dog.save!
     end
