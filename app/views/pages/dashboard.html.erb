@@ -1,2 +1,26 @@
 <h1>Dashboard</h1>
-<%= current_user.name %>
+<%= current_user.email %>
+
+<% @dog = Dog.new(user_id: current_user.id) %>
+<%= simple_form_for(@dog) do |f| %>
+  <%= f.label :name, :label => "Prénom" %>
+  <%= f.text_field :name %>
+  <%= f.label :age %>
+  <%= f.number_field :age, min: 0 %>
+  <%= f.label :color, :label => "Couleur" %>
+  <%= f.text_field :color %>
+  <%= f.label :breed, :label => "Race" %>
+  <%= f.text_field :breed %>   
+  <%= f.input :size, :as => :select, 
+            :collection => %w[Petite Moyenne Grande], 
+            :label => "Taille" %>
+  <%= f.input :is_sterilized, :as => :select, 
+            :collection => [['Non',false],['Oui',true]], 
+            :include_blank => false, 
+            :label => "Stérélisé(e)" %>         
+  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+  <% @dog.photos.each do |photo| %>
+    <%= cl_image_tag photo.key, height: 200, width: 250, crop: :fill %>
+  <% end %> 
+  <%= f.submit %>
+<% end %>

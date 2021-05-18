@@ -5,3 +5,6 @@
 <%= @dog.color %>
 <%= @dog.size %>
 <%= @dog.is_sterilized ? "Oui" : "Non" %>
+<% @dog.photos.each do |photo| %>
+  <%= cl_image_tag photo.key, height: 200, width: 250, crop: :fill %>
+<% end %>
