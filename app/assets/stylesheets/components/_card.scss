@@ -1,0 +1,42 @@
+.my-dogs {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.my-dogs-card {
+  display: flex;
+  height: 150px;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.my-dogs-card-text {
+  padding-top: 15px;
+}
+
+.my-dogs-card-buttons {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 15px;
+  a {
+    font-size: 12px;
+    margin-left: 5px;
+  }
+}
+
+.my-dogs-card-img {
+  height: 150px;
+  flex: 0 0 150px;
+  background-position: center;
+  background-size: cover;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.my-dogs-card-infos {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  flex: 1 1 auto;
+}
