@@ -1,15 +1,37 @@
-<div class="navbar">
-  <div class="container">
-    <div class="navbar-left">
-      <%= link_to root_path do %>
-        <%= image_tag 'logo', class: 'logo' %>
+<div class="navbar navbar-expand-sm navbar-light navbar-rent-your-dog">
+  <%= link_to "#", class: "navbar-brand" do %>
+    <%= image_tag "logo" %>
+  <% end %>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <%= link_to 'Add your dog', new_dog_path %>
+      </li>
+      <% if user_signed_in? %>
+      <li class="nav-item ">
+        <%= current_user.email %>
+      </li>
+      <li class="nav-item dropdown">
+        <%= image_tag 'profile_picture', class: 'avatar dropdown-toggle', id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <%= link_to 'My dashboard', dashboard_path, class: "dropdown-item" %>
+          <%= link_to 'Log out', destroy_user_session_path, class: "dropdown-item", method: :delete %>
+        </div>
+      </li>
+      <% else %>
+      <li class="nav-item">
+        <%= link_to 'Log in', new_user_session_path%>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Sign up', new_user_registration_path%>
+      </li>
       <% end %>
-    </div>
-    <div class="navbar-right">
-      <%= link_to 'Add your dog', root_path %>
-      <%= link_to 'My account', root_path %>
-      <%= link_to 'Log out', root_path %>
-      <%= image_tag 'profile_picture', class: 'avatar' %>
-    </div>
+    </ul>
   </div>
 </div>
