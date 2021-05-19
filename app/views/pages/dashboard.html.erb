@@ -11,8 +11,9 @@
 
 
   <div class="my-dogs">
+    <% current_user.dogs.each do |dog| %>
+    <h3><%= dog.name %></h3>
     <div class="my-dogs-grid">
-      <% current_user.dogs.each do |dog| %>
       <div class="my-dogs-card">
         <% if !dog.photos.empty? %>
         <div class="my-dogs-card-img" style="background-image: url('<%= cl_image_path dog.photos.first.key, height: 100, crop: :thumb %>');">
@@ -68,9 +69,49 @@
         </div>
         <% end %>
       </div>
-  <% end %>
     </div>
+
+    <div class="request-history-cards">
+      <h4>Requests history for <%= dog.name %></h4>
+      <% all_bookings = dog.bookings.where.not(status: 'pending').order('created_at desc') %>
+      <% if all_bookings == [] %>
+      <div class="no-pending-message">
+        <p>Your requests history for <%= dog.name %> is empty.</p>
+      </div>
+      <% else %>
+      <div class="request-cards">
+        <% all_bookings.each do |booking| %>
+        <div class="request-card">
+          <div class="request-card-left">
+          <% if booking.user.photo.attached? %>
+            <%= cl_image_tag booking.user.photo.key, class: 'avatar dropdown-toggle', id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% else %>
+            <%= image_tag 'blank_avatar', class: 'avatar dropdown-toggle', id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% end %>
+          </div>
+          <div class="request-card-right">
+            <p>Request from <%= booking.user.first_name %> <%= booking.user.last_name %></p>
+            <p> From <%= booking.start_date %> to <%= booking.end_date %> </p>
+            <div class="request-card-buttons">
+              <% case booking.status %>
+              <% when 'accepted' %>
+              <p class='accepted-message'>You accepted this request</p>
+              <% when 'refused' %>
+              <p class='refused-message'>You refused this request</p>
+              <% when 'cancelled' %>
+              <p class='refused-message'><%= booking.user.first_name %> cancelled this request</p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+    <hr>
+  <% end %>
   </div>
+
 
   <div class="add-a-dog mb-5">
     <div class="row">

@@ -204,3 +204,14 @@
   color: $red;
 }
 
+.request-history-cards {
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 40px;
+  h4 {
+    margin-bottom: 20px;
+  }
+  .request-cards {
+    height: 350px;
+  }
+}

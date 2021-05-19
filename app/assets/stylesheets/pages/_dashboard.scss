@@ -1,3 +1,15 @@
+hr {
+  margin-top: 80px;
+  margin-bottom: 60px;
+}
+
+.my-dogs {
+  h3 {
+    font-size: 24px;
+    font-weight: bold;
+  }
+}
+
 .dashboard-header {
   font-size: 40px;
   margin-top: 40px;
@@ -23,6 +35,10 @@
   color: $gray;
   border: 1px solid rgba(0, 0, 0, 0.2);
   }
+}
+
+.tabs {
+  margin-bottom: 35px;
 }
 
 .tab {
