@@ -25,7 +25,7 @@ require("channels")
 // External imports
 import "bootstrap";
 import { initFlatpickr } from "../plugins/flatpickr";
-import { initTabsClick } from "../channels/dashboard-tabs";
+import { initTabsClick } from "../plugins/init_tabs_click";
 
 
 
