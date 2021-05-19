@@ -1,0 +1,8 @@
+.dog-photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 15px;
+  img {
+    margin: 0 auto;
+  }
+}

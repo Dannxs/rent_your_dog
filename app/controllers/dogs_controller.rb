@@ -4,7 +4,8 @@ class DogsController < ApplicationController
     @markers = @dogs.geocoded.map do |dog|
       {
         lat: dog.latitude,
-        lng: dog.longitude
+        lng: dog.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { dog: dog }),
       }
     end
   end
@@ -54,6 +55,6 @@ class DogsController < ApplicationController
   private
 
   def dog_params
-    params.require(:dog).permit(:name, :age, :color, :size, :is_sterilized, :rating, :comments, :breed, photos: [])
+    params.require(:dog).permit(:name, :age, :color, :size, :is_sterilized, :rating, :comments, :breed, :address, :description, photos: [])
   end
 end
