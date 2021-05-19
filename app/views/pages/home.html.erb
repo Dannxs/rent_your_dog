@@ -1,7 +1,116 @@
+<%# <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> %>
 
+
+<%# <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">Start Bootstrap</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+              </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav> %>
+
+<header>
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+      <!-- Slide One - Set the background image for this slide in the line below -->
+      <div class="carousel-item active" style="background-image: url('https://www.teahub.io/photos/full/366-3668994_cute-puppies-on-the-ice-wallpaper-for-android.jpg')">
+        <div class="carousel-caption d-none d-md-block">
+          <h3 class="display-4">Share the LOVE of dogs</h3>
+          <p class="lead">Connecting dog owners with local dog borrowers for
+walks, weekends and holidays.</p>
+        </div>
+      </div>
+      <!-- Slide Two - Set the background image for this slide in the line below -->
+      <div class="carousel-item" style="background-image: url('https://sun9-2.userapi.com/impf/2lK-6Y6wdfNdhIKFiFTd14Yg83k0ZZFJ8D5_zg/QSWzJ_3rsak.jpg?size=587x453&quality=96&sign=0b090738320c176607d66b71d41b68e7&type=album')">
+        <div class="carousel-caption d-none d-md-block">
+          <h3 class="display-4">Your LOVE is an unlimited power</h3>
+          <p class="lead">Connecting dog owners with local dog borrowers for
+walks, weekends and holidays.</p>
+        </div>
+      </div>
+      <!-- Slide Three - Set the background image for this slide in the line below -->
+      <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1578700405865-1c2eb4bddc03?ixid=MnwxMjA3fDB8MHxzZWFy[…]ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
+        <div class="carousel-caption d-none d-md-block">
+          <h3 class="display-4">There is no love without compassion</h3>
+          <p class="lead">Connecting dog owners with local dog borrowers for
+walks, weekends and holidays.</p>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+  </div>
+</header>
+
+<!-- Page Content -->
+<section class="py-5">
+  <div class="container">
+    <%# <h1 class="font-weight-light">Share the LOVE of dogs</h1>
+    <p class="lead">Connecting dog owners with local dog borrowers for
+walks, weekends and holidays.</p> %>
+  </div>
+</section>
+
+
+<%# <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.teahub.io/photos/full/366-3668994_cute-puppies-on-the-ice-wallpaper-for-android.jpg);">
+  <div class="container">
+    <h1><strong>Share the LOVE of dogs</strong>!</h1>
+    <p>Connecting dog owners with local dog borrowers for
+walks, weekends and holidays.</p>
+  </div>
+</div> %>
+
+
+<!--------- CARDS------>
 <div class="container">
+<form action="" method="get">
+  <div class="product-search">
+      <div class="search-element">
+        <label class="search-label">Which breed are you looking for?</label>
+        <input class="search-input" type="text" autocomplete="on" placeholder="Breed" name="query">
+      </div>
+      <div class="search-element">
+        <label class="search-label">Where are you looking?</label>
+        <input class="search-input" type="text" placeholder="City, Country" class="" autocomplete="on" name="location">
+      </div>
 
-<div class="cards">
+      <%= link_to "Search", dogs_path, :class => "search-button"%>
+  </div>
+</form>
+
+<!--<div class="cards">
   <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('image_1.jpg')%>); height: 300px; background-size: cover;">
   Search by race
   </div>
@@ -13,7 +122,7 @@
   <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('image_2.jpg')%>); height: 300px; background-size: cover;">
   Looking for a comnany ?
   </div>
-</div>
+</div> -->
 
 
 <div class="c-left">
