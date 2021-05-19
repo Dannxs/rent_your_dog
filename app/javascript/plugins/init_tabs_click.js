@@ -1,9 +1,10 @@
 
 
-const tabs = document.querySelectorAll('.tab');
 
 const initTabsClick = () => {
+  const tabs = document.querySelectorAll('.tab');
   if (tabs) {
+    console.log('YoYo')
     tabs.forEach((tab) => {
       tab.addEventListener('click', (event) => {
         tabs.forEach((tab) => {
