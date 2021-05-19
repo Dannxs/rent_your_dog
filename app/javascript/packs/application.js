@@ -26,8 +26,10 @@ require("channels")
 import "bootstrap";
 import { initFlatpickr } from "../plugins/flatpickr";
 import { initTabsClick } from "../plugins/init_tabs_click";
+import { initMapbox } from '../plugins/init_mapbox';
 
-
+// CSS
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -37,4 +39,5 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
   initFlatpickr();
   initTabsClick();
+  initMapbox();
 });
