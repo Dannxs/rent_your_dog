@@ -1,20 +1,47 @@
 <section>
-<div class="card-show-dog">
-  <div class="card-show-image-dog">
-    <% @dog.photos.each do |photo| %>
-      <%= cl_image_tag photo.key, height: 200, width: 250, crop: :fill %>
-    <% end %>
+  <div class="card-show-dog">
+    <div class="card-show-image-dog">
+      <div class="carousel slide" id="main-carousel" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <% i = 0 %>
+          <% while i < @dog.photos.count %>
+            <li data-target="#main-carousel" data-slide-to=<%"#{i}"%> <% if i.zero? %> class="active" <% end %> ></li>
+            <% i += 1 %>
+          <% end %>
+        </ol><!-- /.carousel-indicators -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <%= cl_image_tag @dog.photos.first.key, :class => "d-block w-100" %>
+          </div>
+          <% photo_num = @dog.photos.first.id + 1 %>
+          <% while photo_num < @dog.photos.count + @dog.photos.first.id %>
+            <div class="carousel-item">
+              <%= cl_image_tag @dog.photos.find(photo_num).key, :class => "d-block w-100" %>
+            </div>
+            <% photo_num += 1 %>
+          <% end %>
+        </div>
+        <a href="#main-carousel" class="carousel-control-prev" data-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+          <span class="sr-only" aria-hidden="true">Prev</span>
+        </a>
+        <a href="#main-carousel" class="carousel-control-next" data-slide="next">
+          <span class="carousel-control-next-icon"></span>
+          <span class="sr-only" aria-hidden="true">Next</span>
+        </a>
+      </div>
+    </div>
+    <div class="card-show-dog-infos">
+      <h1><%= @dog.name %></h1>
+      <p><%= "Race: #{@dog.breed}" %></p>
+      <p><%= "Age: #{@dog.age}" %></p>
+      <p><%= "Couleur #{@dog.color}" %></p>
+      <p><%= "Taille: #{@dog.size}" %></p>
+      <p><%= @dog.is_sterilized ? "#{@dog.name} est stérilisé(e)" : "#{@dog.name} n'est pas stérilisé(e)" %></p>
+    </div>
   </div>
-  <div class="card-show-dog-infos">
-    <h1><%= @dog.name %></h1>
-    <p><%= "Race: #{@dog.breed}" %></p>
-    <p><%= "Age: #{@dog.age}" %></p>
-    <p><%= "Couleur #{@dog.color}" %></p>
-    <p><%= "Taille: #{@dog.size}" %></p>
-    <p><%= @dog.is_sterilized ? "#{@dog.name} est stérilisé" : "#{@dog.name} n'est pas stérilisé" %></p>
+  <div class=btn-show-rent>
+    <%= link_to 'Rent dog', new_dog_booking_path(@dog), class: "btn btn-success rounded btn-lg btn-block" %>
   </div>
-</div>
-<div>
-  <%= link_to 'Rent dog', new_dog_booking_path(@dog), class: "btn btn-success" %>
-</div>
 </section>
+
