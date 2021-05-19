@@ -15,13 +15,16 @@
   }
 }
 
-.my-dogs-card {
+.my-dogs-card, .my-rental-request {
   display: flex;
-  height: 150px;
   border-radius: 5px;
   background-color: white;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   margin: auto 0;
+}
+
+.my-dogs-card {
+  height: 150px;
 }
 
 .my-dogs-card-text {
@@ -38,13 +41,16 @@
   }
 }
 
-.my-dogs-card-img {
-  height: 150px;
-  flex: 0 0 150px;
+.my-dogs-card-img, .my-rental-request-img {
   background-position: center;
   background-size: cover;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
+}
+
+.my-dogs-card-img {
+  height: 150px;
+  flex: 0 0 150px;
 }
 
 .my-dogs-card-infos {
@@ -92,3 +98,69 @@
     font-size: 12px;
   }
 }
+
+// .my-rental-requests {
+//   display: flex;
+//   flex-direction: column;
+// }
+
+.my-rental-request {
+  margin-bottom: 20px;
+}
+
+.my-rental-request-infos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.my-rental-request-right {
+  flex: 1 1 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.my-rental-request-status {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.rental-request-message {
+  display: flex;
+  align-items: center;
+  p {
+    margin-right: 15px;
+  }
+}
+
+.my-rental-request-img {
+  height: 200px;
+  flex: 0 0 200px;
+}
+
+.my-rental-request {
+  height: 200px;
+  margin-bottom: 30px;
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.my-rental-request-infos-dog-owner {
+  display: flex;
+  align-items: center;
+  p {
+    margin-right: 15px;
+  }
+}
+
+.accepted-message {
+  color: $green;
+}
+
+.refused-message {
+  color: $red;
+}
+
