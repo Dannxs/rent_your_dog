@@ -24,14 +24,15 @@ puts 'Creating fake users/dogs...'
   user.save!
     2.times do
       dog = Dog.new(
-        name: Faker::FunnyName.name,
+        name: Faker::Name.first_name,
         size: size.sample,
         age: rand(1..15),
         color: Faker::Color.color_name,
         rating: rand(0..5),
         is_sterilized: Faker::Boolean.boolean,
         user_id: user.id,
-        breed: Faker::Creature::Dog.breed
+        breed: Faker::Creature::Dog.breed,
+        description: Faker::Movies::StarWars.quote
       )
       dog.save!
     end

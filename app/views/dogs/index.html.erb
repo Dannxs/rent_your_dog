@@ -1,12 +1,17 @@
 <h1>Dogs in your area</h1>
-<div class="container">
   <div class="row">
-    <% @dogs.each do |dog| %>
-      <div class="col-md-6">
-          <%# photo à afficher %>
-          <%= link_to dog.name, dog_path(dog) %>
-          <%= dog.size %>
-      </div>
-    <% end %>
+    <div class="col-8 cards-container">
+      <% @dogs.each do |dog| %>
+        <%= link_to dog_path(dog), class:"card-dog" do %>
+            <img src="https://source.unsplash.com/user/adventure_yuki" />
+            <div class="card-dog-infos">
+              <div>
+                <h2><%= dog.name %></h2>
+                <p><%= dog.description %></p>
+              </div>
+              <h2 class="card-dog-rating"><%= dog.rating %>/5</h2>
+            </div>
+        <% end %>
+      <% end %>
+    </div>
   </div>
-</div>
