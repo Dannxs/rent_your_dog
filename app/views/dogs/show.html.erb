@@ -1,6 +1,7 @@
 <section>
   <div class="card-show-dog">
     <div class="card-show-image-dog">
+    <% if @dog.photos.attached? %>
       <div class="carousel slide" id="main-carousel" data-ride="carousel">
         <ol class="carousel-indicators">
           <% i = 0 %>
@@ -30,6 +31,9 @@
           <span class="sr-only" aria-hidden="true">Next</span>
         </a>
       </div>
+      <% else %>
+        <%= image_tag 'dog.jpg', :class => "w-100" %>
+      <% end %>
     </div>
     <div class="card-show-dog-infos">
       <h1><%= @dog.name %></h1>
@@ -38,10 +42,11 @@
       <p><%= "Couleur #{@dog.color}" %></p>
       <p><%= "Taille: #{@dog.size}" %></p>
       <p><%= @dog.is_sterilized ? "#{@dog.name} est stérilisé(e)" : "#{@dog.name} n'est pas stérilisé(e)" %></p>
+      <div class=btn-show-rent>
+        <%= link_to 'Rent dog', new_dog_booking_path(@dog), class: "btn btn-success rounded btn-lg btn-block mt-4" %>
+      </div>
     </div>
   </div>
-  <div class=btn-show-rent>
-    <%= link_to 'Rent dog', new_dog_booking_path(@dog), class: "btn btn-success rounded btn-lg btn-block" %>
-  </div>
+
 </section>
 
