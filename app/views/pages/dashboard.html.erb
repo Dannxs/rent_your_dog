@@ -34,9 +34,15 @@
       </div>
 
       <div class="my-dogs-requests">
-        <h4>Rental Requests</h4>
+        <h4>Pending Requests</h4>
+        <% pending_bookings = dog.bookings.where(status: 'pending').order('created_at desc') %>
+        <% if pending_bookings == [] %>
+        <div class="no-pending-message">
+          <p>You don't have any pending requests for <%= dog.name %></p>
+        </div>
+        <% else %>
         <div class="request-cards">
-          <% dog.bookings.order('created_at desc').each do |booking| %>
+          <% pending_bookings.each do |booking| %>
           <div class="request-card">
             <div class="request-card-left">
             <% if booking.user.photo.attached? %>
@@ -49,26 +55,18 @@
               <p>Request from <%= booking.user.first_name %> <%= booking.user.last_name %></p>
               <p> From <%= booking.start_date %> to <%= booking.end_date %> </p>
               <div class="request-card-buttons">
-                <% case booking.status %>
-                <% when 'pending' %>
                 <%= simple_form_for booking do |f| %>
                   <% f.button :submit, 'Accept', class: 'btn btn-success' %>
                 <% end %>
                 <%= simple_form_for booking do |f| %>
                   <% f.button :submit, 'Decline', class: 'btn btn-danger' %>
                 <% end %>
-                <% when 'accepted' %>
-                <p>You accepted this request</p>
-                <% when 'refused' %>
-                <p>You refused this request</p>
-                <% when 'cancelled' %>
-                <p>This request has been cancelled by <%= booking.user.first_name %></p>
-                <% end %>
               </div>
             </div>
           </div>
           <% end %>
         </div>
+        <% end %>
       </div>
   <% end %>
     </div>
@@ -102,6 +100,53 @@
   </div>
 
   <div class="my-rental-requests">
+    <% current_user.bookings.each do |booking| %>
+    <div class="my-rental-request">
+      <% dog = booking.dog %>
+      <% if !dog.photos.empty? %>
+      <div class="my-rental-request-img" style="background-image: url('<%= cl_image_path dog.photos.first.key, height: 100, crop: :thumb %>');">
+      <% else %>
+      <div class="my-rental-request-img" style="background-image: url('<%= image_path "dog" %>');">
+      <% end %>
+      </div>
+      <div class="my-rental-request-right">
+        <div class="my-rental-request-infos">
+          <div class="my-rental-request-infos-dog">
+            <p><span><%= dog.name %></span> - <%= dog.age %> ans (<%= dog.breed %>) </p>
+            <p><em><%= dog.color %> / <%= dog.size %></em></p>
+          </div>
+          <div class="my-rental-request-infos-dog-owner">
+            <p>Dog owner: <%= dog.user.first_name %> <%= dog.user.last_name %></p>
+            <% if dog.user.photo.attached? %>
+            <%= cl_image_tag dog.user.photo.key, class: 'avatar dropdown-toggle', id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <% else %>
+            <%= image_tag 'blank_avatar', class: 'avatar dropdown-toggle', id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <% end %>
+          </div>
+        </div>
+        <div class="my-rental-request-dates">
+          <p> From <%= booking.start_date %> to <%= booking.end_date %> </p>
+        </div>
+        <div class="my-rental-request-status">
+          <div class="rental-request-message">
+          <% case booking.status %>
+          <% when "pending" %>
+            <p class='pending-message'><%= dog.user.first_name %> did not respond to your request yet</p>
+            <%= simple_form_for booking do |f| %>
+              <% f.button :submit, 'Cancel', class: 'btn btn-warning' %>
+            <% end %>
+          <% when "accepted" %>
+            <p class='accepted-message'><%= dog.user.first_name %> accepted your request</p>
+          <% when "refused" %>
+            <p class='refused-message'><%= dog.user.first_name %> refused your request</p>
+          <% when "cancelled" %>
+            <p class='refused-message'>You canceled your request</p>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+      <% end %>
   </div>
 
   <div class="my-informations">

@@ -19,7 +19,13 @@ class BookingsController < ApplicationController
   def update
     @booking = Booking.find(params[:id])
     if @booking.dog.user == current_user
-      params[:commit] == 'Accept' ? @booking.accepted! : @booking.refused!
+      if params[:commit] == 'Accept'
+        @booking.accepted!
+      elsif params[:commit] == 'Cancel'
+        @booking.cancelled!
+      else
+        @booking.refused!
+      end
       @booking.save
     end
     redirect_to dashboard_path
