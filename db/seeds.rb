@@ -7,10 +7,14 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
+Dog.destroy_all
+User.destroy_all
+
 size = ["petit", "grand", "moyen"]
+addresses = ["3 rue guynemer, Saint-Mandé", "16 villa gaudelet, Paris", "27 rue au pain, Saint-germain-en-laye", "14, Rue Chanoinesse, Paris 75004", "12 Avenue Beaucour, Paris"]
 
 puts 'Creating fake users/dogs...'
-100.times do
+20.times do
   user = User.new(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
@@ -32,7 +36,8 @@ puts 'Creating fake users/dogs...'
         is_sterilized: Faker::Boolean.boolean,
         user_id: user.id,
         breed: Faker::Creature::Dog.breed,
-        description: Faker::Movies::StarWars.quote
+        description: Faker::Movies::StarWars.quote,
+        address: addresses.sample,
       )
       dog.save!
     end
