@@ -2,15 +2,17 @@
   display: flex;
   li {
     margin: auto 10px;
-    color: $gray;
+    color: black;
   }
 }
 
 .navbar a {
-  color: $gray;
+  color: black;
+  padding: 4px;
   &:hover {
     text-decoration: none;
-    color: black;
+    color: rgb(255, 255, 255);
+    border-bottom: white solid;
   }
 }
 
