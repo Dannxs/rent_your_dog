@@ -1,7 +1,7 @@
 <div class="container">
   <h2 class="dashboard-header">Dashboard</h2>
 
-  <ul class="tabs list-inline">
+  <ul class="tabs list-inline" id="mytabs">
     <li class="tab list-inline-item active" id="my-dogs">My dogs</li>
     <li class="tab list-inline-item" id="add-a-dog">Add a dog</li>
     <li class="tab list-inline-item" id="my-rental-requests">My rental requests</li>
@@ -141,7 +141,7 @@
   </div>
 
   <div class="my-rental-requests">
-    <% current_user.bookings.each do |booking| %>
+    <% current_user.bookings.order('created_at desc').each do |booking| %>
     <div class="my-rental-request">
       <% dog = booking.dog %>
       <% if !dog.photos.empty? %>
