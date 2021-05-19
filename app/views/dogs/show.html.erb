@@ -1,15 +1,20 @@
-<h1><%= @dog.name %></h1>
-<%# images à afficher %>
-<div>
-<%= @dog.breed %>
-<%= @dog.age %>
-<%= @dog.color %>
-<%= @dog.size %>
-<%= @dog.is_sterilized ? "#{@dog.name} est stérilisé" : "#{@dog.name} n'est pas stérilisé" %>
-<% @dog.photos.each do |photo| %>
-  <%= cl_image_tag photo.key, height: 200, width: 250, crop: :fill %>
-<% end %>
+<section>
+<div class="card-show-dog">
+  <div class="card-show-image-dog">
+    <% @dog.photos.each do |photo| %>
+      <%= cl_image_tag photo.key, height: 200, width: 250, crop: :fill %>
+    <% end %>
+  </div>
+  <div class="card-show-dog-infos">
+    <h1><%= @dog.name %></h1>
+    <p><%= "Race: #{@dog.breed}" %></p>
+    <p><%= "Age: #{@dog.age}" %></p>
+    <p><%= "Couleur #{@dog.color}" %></p>
+    <p><%= "Taille: #{@dog.size}" %></p>
+    <p><%= @dog.is_sterilized ? "#{@dog.name} est stérilisé" : "#{@dog.name} n'est pas stérilisé" %></p>
+  </div>
 </div>
 <div>
-<%= link_to 'Rent dog', new_dog_booking_path(@dog), class: "btn btn-success" %>
+  <%= link_to 'Rent dog', new_dog_booking_path(@dog), class: "btn btn-success" %>
 </div>
+</section>
