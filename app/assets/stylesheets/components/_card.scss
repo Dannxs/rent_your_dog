@@ -63,6 +63,7 @@
 .cards-container {
   display: flex;
   flex-wrap: wrap;
+  align-self: self-start;
 }
 
 .card-dog {
