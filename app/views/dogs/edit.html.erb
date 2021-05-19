@@ -1,22 +1,27 @@
-<%= simple_form_for(@dog) do |f| %>
-  <%= f.label :name, :label => "Prénom" %>
-  <%= f.text_field :name %>
-  <%= f.label :age %>
-  <%= f.number_field :age, min: 0 %>
-  <%= f.label :color, :label => "Couleur" %>
-  <%= f.text_field :color %>
-  <%= f.label :breed, :label => "Race" %>
-  <%= f.text_field :breed %>
-  <%= f.input :size, :as => :select,
-            :collection => %w[Petite Moyenne Grande],
-            :label => "Taille" %>
-  <%= f.input :is_sterilized, :as => :select,
-            :collection => [['Non',false],['Oui',true]],
-            :include_blank => false,
-            :label => "Stérélisé(e)" %>
-  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-  <% @dog.photos.each do |photo| %>
-    <%= cl_image_tag photo.key, height: 200, width: 250, crop: :fill %>
-  <% end %>
-  <%= f.submit %>
-<% end %>
+<div class="row mt-5">
+  <div class="col-12 col-lg-6 offset-lg-3">
+    <h2>Update your dog</h2>
+    <%= simple_form_for(@dog) do |f| %>
+      <%= f.input :name, label: "Prénom" %>
+      <%= f.input :age, label: "Âge", min: 0 %>
+      <%= f.input :address, label: "Adresse" %>
+      <%= f.input :color, label: "Couleur" %>
+      <%= f.input :breed, label: "Race" %>
+      <%= f.input :description, label: "Description" %>
+      <%= f.input :size, :as => :select,
+                :collection => %w[Petite Moyenne Grande],
+                :label => "Taille" %>
+      <%= f.input :is_sterilized, :as => :select,
+                :collection => [['Non',false],['Oui',true]],
+                :include_blank => false,
+                :label => "Stérélisé(e)" %>
+      <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+      <%= f.submit %>
+      <% end %>
+    <div class="dog-photos mt-4">
+      <% @dog.photos.each do |photo| %>
+        <%= cl_image_tag photo.key, height: 200, width: 250, crop: :fill %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -4,7 +4,7 @@
     <div class="col-8 cards-container">
       <% @dogs.each do |dog| %>
         <%= link_to dog_path(dog), class:"card-dog" do %>
-            <img src="https://source.unsplash.com/user/adventure_yuki" />
+            <%= cl_image_tag dog.photos.first.key%>
             <div class="card-dog-infos">
               <div>
                 <h2><%= dog.name %></h2>
