@@ -1,36 +1,3 @@
-<%# <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> %>
-
-
-<%# <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-  <div class="container">
-    <a class="navbar-brand" href="#">Start Bootstrap</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home
-                <span class="sr-only">(current)</span>
-              </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Services</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav> %>
-
-<header>
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -72,53 +39,16 @@ walks, weekends and holidays.</p>
           <span class="sr-only">Next</span>
         </a>
   </div>
-</header>
-
-<!-- Page Content -->
-<section class="py-5">
-  <div class="container">
-    <%# <h1 class="font-weight-light">Share the LOVE of dogs</h1>
-    <p class="lead">Connecting dog owners with local dog borrowers for
-walks, weekends and holidays.</p> %>
-  </div>
-</section>
 
 
-<%# <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.teahub.io/photos/full/366-3668994_cute-puppies-on-the-ice-wallpaper-for-android.jpg);">
-  <div class="container">
-    <h1><strong>Share the LOVE of dogs</strong>!</h1>
-    <p>Connecting dog owners with local dog borrowers for
-walks, weekends and holidays.</p>
-  </div>
-</div> %>
+
 
 
 <!--------- SEARCH BAR ------>
+<%= render 'shared/searchbar' %>
+
+
 <div class="container">
-  <%= form_for( :dog, :html => { class: "product-search" }, url:dogs_path, method: :get) do |f| %>
-    <div class="search-element">
-    <label class="search-label">Où voulez-vous louer votre chien ?</label>
-    <%= f.text_field :address, :class => "search-input", required: true %>
-    <%= f.submit "Chercher votre chien", :class => "search-button"%>
-    </div>
-  <% end %>
-  
-
-<!--<div class="cards">
-  <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('image_1.jpg')%>); height: 300px; background-size: cover;">
-  Search by race
-  </div>
-
-  <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('image_3.jpg')%>); height: 300px; background-size: cover;">
-  Find a neighboor
-  </div>
-
-  <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('image_2.jpg')%>); height: 300px; background-size: cover;">
-  Looking for a comnany ?
-  </div>
-</div> -->
-
-
 <div class="c-left">
   <div class="card-product-info">
     <h2>Can Dogs Love? A True Story.</h2>
