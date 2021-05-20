@@ -2,15 +2,21 @@
   display: flex;
   li {
     margin: auto 10px;
-    color: $gray;
+    color: black;
   }
 }
 
+#home-page{
+  border: none;
+}
+
 .navbar a {
-  color: $gray;
+  color: black;
+  font-weight: bold;
   &:hover {
     text-decoration: none;
-    color: black;
+    color: white;
+    border-bottom: solid white;
   }
 }
 
