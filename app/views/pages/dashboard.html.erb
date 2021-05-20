@@ -207,8 +207,20 @@
 
   <div class="my-informations">
     <div class="row">
-      <div class="col-12 col-lg-6 offset-lg-3">
-
+      <div class="info-dash col-12 col-lg-6 offset-lg-3">
+        <h6>First Name</h6>
+        <p><%= current_user.first_name %></p>
+        <h6>Last Name</h6>
+        <p><%= current_user.last_name %></p>
+        <h6>Email address</h6>
+        <p><%= current_user.email %></p>
+        <h6>Age</h6>
+        <p><%= current_user.age %></p>
+        <h6>Address</h6>
+        <p><%= current_user.address %></p>
+        <h6>Gender</h6>
+        <p><%= current_user.gender %></p>
+        <%= link_to "Edit your profile", "/users/edit", class: 'btn btn-info btn-block' %>
       </div>
     </div>
   </div>
