@@ -121,7 +121,8 @@
         <%= simple_form_for(@dog) do |f| %>
           <%= f.input :name, :label => "Prénom" %>
           <%= f.input :age, :label => "Age", min: 0 %>
-          <%= f.input :address, label: "Adresse" %>
+          <%= f.label "Adresse"%>
+          <%= f.text_field :address, :class => "search-input", required: true%>
           <%= f.input :color, label: "Couleur" %>
           <%= f.input :breed, :label => "Race" %>
           <%= f.input :description, :label => "Description" %>
