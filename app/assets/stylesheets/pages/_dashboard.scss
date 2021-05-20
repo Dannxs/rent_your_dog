@@ -60,7 +60,7 @@ display: none;
   font-weight: 400;
 }
 
-.active {
+.tab.active {
   color: #555555;
   border-bottom: 3px solid #555555;
   padding-bottom: 8px;
@@ -84,5 +84,26 @@ display: none;
   }
   a{
     cursor: progress;
+    }
+  }
+
+.leave-a-review {
+  background-color: $light-gray;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  margin-right: 10px;
+  &:hover {
+    opacity: 0.8 ;
+  }
+  p {
+    padding: 5px 15px;
   }
 }
+
+.my-rental-request-status {
+  a {
+    text-decoration: none;
+    color: $gray;
+  }
+}
+

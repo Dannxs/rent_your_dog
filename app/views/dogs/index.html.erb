@@ -9,7 +9,12 @@
                 <h2><%= dog.name %></h2>
                 <p><%= dog.description %></p>
               </div>
-              <h2 class="card-dog-rating"><%= dog.rating %>/5</h2>
+              <% unless dog.rating.nil? %>
+                <p class="star-icons">
+                  <%= "<i class='fas fa-star active'></i>".html_safe * dog.rating %>
+                  <%= "<i class='fas fa-star'></i>".html_safe * (5 - dog.rating) %>
+                </p>
+              <% end %>
             </div>
         <% end %>
       <% end %>
