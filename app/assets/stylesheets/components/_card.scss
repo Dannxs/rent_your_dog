@@ -29,6 +29,9 @@
 
 .my-dogs-card-text {
   padding-top: 15px;
+  display: flex;
+  align-items: center;
+  padding-right: 15px;
 }
 
 .my-dogs-card-buttons {
@@ -99,6 +102,16 @@
   justify-content: space-between;
   align-items: flex-end;
   position: relative;
+}
+
+.card-dog:hover {
+  text-decoration: none;
+}
+
+.card-dog-infos {
+  .star-icons i {
+    color: $gray;
+  }
 }
 
 .request-cards {

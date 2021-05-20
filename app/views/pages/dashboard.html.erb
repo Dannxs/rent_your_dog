@@ -24,8 +24,14 @@
         <div class="my-dogs-card-infos">
           <div class="my-dogs-card-text">
             <p><span><%= dog.name %></span> - <%= dog.age %> ans (<%= dog.breed %>) </p>
-            <p><em><%= dog.color %> / <%= dog.size %></em></p>
+              <% unless dog.rating.nil? %>
+                <p class="star-icons">
+                  <%= "<i class='fas fa-star active'></i>".html_safe * dog.rating %>
+                  <%= "<i class='fas fa-star'></i>".html_safe * (5 - dog.rating) %>
+                </p>
+              <% end %>
           </div>
+          <p><em><%= dog.color %> / <%= dog.size %></em></p>
           <div class="my-dogs-card-buttons">
           <%= link_to 'See', dog_path(dog), class: 'btn btn-primary' %>
           <%= link_to 'Edit', edit_dog_path(dog), class: 'btn btn-info' %>
@@ -172,6 +178,13 @@
           <p> From <%= booking.start_date %> to <%= booking.end_date %> </p>
         </div>
         <div class="my-rental-request-status">
+          <% if DateTime.now - booking.end_date > 0 %>
+            <%= link_to new_dog_review_path(dog) do %>
+              <div class="leave-a-review">
+                <p>Did your enjoy your time with <%= dog.name %> ? Leave a review !</p>
+              </div>
+            <% end %>
+          <% end %>
           <div class="rental-request-message">
           <% case booking.status %>
           <% when "pending" %>
@@ -195,8 +208,20 @@
 
   <div class="my-informations">
     <div class="row">
-      <div class="col-12 col-lg-6 offset-lg-3">
-
+      <div class="info-dash col-12 col-lg-6 offset-lg-3">
+        <h6>First Name</h6>
+        <p><%= current_user.first_name %></p>
+        <h6>Last Name</h6>
+        <p><%= current_user.last_name %></p>
+        <h6>Email address</h6>
+        <p><%= current_user.email %></p>
+        <h6>Age</h6>
+        <p><%= current_user.age %></p>
+        <h6>Address</h6>
+        <p><%= current_user.address %></p>
+        <h6>Gender</h6>
+        <p><%= current_user.gender %></p>
+        <%= link_to "Edit your profile", "/users/edit", class: 'btn btn-info btn-block' %>
       </div>
     </div>
   </div>

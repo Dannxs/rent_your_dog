@@ -27,6 +27,7 @@ import "bootstrap";
 import { initFlatpickr } from "../plugins/flatpickr";
 import { initTabsClick } from "../plugins/init_tabs_click";
 import { initMapbox } from '../plugins/init_mapbox';
+import { initStars } from '../plugins/init_stars';
 import { initAutocomplete } from "../plugins/init_autocomplete";
 
 // CSS
@@ -41,5 +42,6 @@ document.addEventListener('turbolinks:load', () => {
   initFlatpickr();
   initTabsClick();
   initMapbox();
+  initStars();
   initAutocomplete();
 });
