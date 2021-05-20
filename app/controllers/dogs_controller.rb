@@ -1,6 +1,6 @@
 class DogsController < ApplicationController
   def index
-    @dogs = Dog.all
+    @dogs = Dog.near(params[:dog][:address], 10)
     @markers = @dogs.geocoded.map do |dog|
       {
         lat: dog.latitude,

@@ -28,6 +28,8 @@ import { initFlatpickr } from "../plugins/flatpickr";
 import { initTabsClick } from "../plugins/init_tabs_click";
 import { initMapbox } from '../plugins/init_mapbox';
 import { initStars } from '../plugins/init_stars';
+import { initAutocomplete } from "../plugins/init_autocomplete";
+
 // CSS
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -41,4 +43,5 @@ document.addEventListener('turbolinks:load', () => {
   initTabsClick();
   initMapbox();
   initStars();
+  initAutocomplete();
 });
