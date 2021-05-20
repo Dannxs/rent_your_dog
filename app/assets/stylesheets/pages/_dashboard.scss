@@ -24,6 +24,9 @@ hr {
   display: none;
 }
 
+.my-informations{
+display: none;
+}
 .no-pending-message {
   display: flex;
 
@@ -47,6 +50,7 @@ hr {
   margin: 8px;
   font-weight: 400;
   font-size: 20px;
+  cursor: pointer;
 }
 
 .tab:hover {
@@ -60,4 +64,25 @@ hr {
   color: #555555;
   border-bottom: 3px solid #555555;
   padding-bottom: 8px;
+}
+
+.info-dash{
+  background-color: #d0c4c438;
+  height: 530px;
+  margin-bottom: 32px;
+  padding:32px;
+  border-radius: 5px;
+  p{
+    border-bottom: solid #e3e3e375;
+  }
+  .btn{
+    border-radius: 5px;
+    justify-content: center;
+  }
+  h6{
+    font-weight: bold;
+  }
+  a{
+    cursor: progress;
+  }
 }
