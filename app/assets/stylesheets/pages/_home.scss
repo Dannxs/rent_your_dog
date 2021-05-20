@@ -59,9 +59,10 @@ body {
 .search-element {
   display: flex;
   flex-grow: 2;
-  flex-direction: column;
+  flex-direction: row;
   border-right: 1px solid rgba(10,10,10,.1);
   padding: 1em;
+  align-items: center;
 }
 
 .search-label {
@@ -84,18 +85,14 @@ body {
 
 .search-button {
   display: inline-block;
-  flex-grow: 1;
+  // flex-grow: 1;
   height: 80px;
   line-height: 80px;
   padding: 0 2em;
   text-align: center;
   font-size: 1.2em;
   font-weight: 100;
-  border: 0;
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border-radius: 4px;
   color: white;
   background-color: rgb(140, 82, 158);
   transition: background-color 0.8s ease;
@@ -103,6 +100,7 @@ body {
 
 .search-button:hover {
   background-color: HSLA(345, 100%, 60%, 1.00);
+  text-decoration: none;
 }
 
 /*Resize the wrap to see the search bar change!*/

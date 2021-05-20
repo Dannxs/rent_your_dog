@@ -93,22 +93,16 @@ walks, weekends and holidays.</p>
 </div> %>
 
 
-<!--------- CARDS------>
+<!--------- SEARCH BAR ------>
 <div class="container">
-<form action="" method="get">
-  <div class="product-search">
-      <div class="search-element">
-        <label class="search-label">Which breed are you looking for?</label>
-        <input class="search-input" type="text" autocomplete="on" placeholder="Breed" name="query">
-      </div>
-      <div class="search-element">
-        <label class="search-label">Where are you looking?</label>
-        <input class="search-input" type="text" placeholder="City, Country" class="" autocomplete="on" name="location">
-      </div>
-
-      <%= link_to "Search", dogs_path, :class => "search-button"%>
-  </div>
-</form>
+  <%= form_for( :dog, :html => { class: "product-search" }, url:dogs_path, method: :get) do |f| %>
+    <div class="search-element">
+    <label class="search-label">Où voulez-vous louer votre chien ?</label>
+    <%= f.text_field :address, :class => "search-input", required: true %>
+    <%= f.submit "Chercher votre chien", :class => "search-button"%>
+    </div>
+  <% end %>
+  
 
 <!--<div class="cards">
   <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('image_1.jpg')%>); height: 300px; background-size: cover;">
