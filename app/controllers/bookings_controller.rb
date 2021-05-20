@@ -28,6 +28,9 @@ class BookingsController < ApplicationController
       end
       @booking.save
     end
+    if @booking.user == current_user && params[:commit] == 'Cancel'
+      @booking.cancelled!
+    end
     redirect_to dashboard_path
   end
 
