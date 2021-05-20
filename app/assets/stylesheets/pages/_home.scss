@@ -232,7 +232,7 @@ body {
 //   padding: 16px;
 // }
 // °°°°° FOOTER °°°°°
- body { }
+//  body { }
 .footer-widget p {
     margin-bottom: 27px;
 }
@@ -425,12 +425,12 @@ p {
   margin-bottom: 27px; }
 
 .footer-widget a {
-  color: #878787;
+  color: #dfdbdb;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s; }
   .footer-widget a:hover {
-    color: #007bff; }
+    color: #8dbaeb; }
 
 .footer-widget:after {
   content: "";
@@ -445,7 +445,8 @@ p {
     padding: 14px 28px;
     border-radius: 50px;
     background: #2E2E2E;
-    border: 1px solid #2E2E2E; }
+    border: 3px solid #2E2E2E;
+  }
   .dk-footer-form input::-webkit-input-placeholder, .dk-footer-form input::-moz-placeholder, .dk-footer-form input:-ms-input-placeholder, .dk-footer-form input::-ms-input-placeholder, .dk-footer-form input::-webkit-input-placeholder {
     color: #878787;
     font-size: 14px; }
@@ -456,7 +457,7 @@ p {
     position: absolute;
     top: 0;
     right: 0;
-    padding: 12px 24px 12px 17px;
+    padding: 10px 20px 2px 20px;
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
     border: 1px solid #007bff;
@@ -507,7 +508,7 @@ p {
   background-color: #2e2e2e; }
   .copyright span,
   .copyright a {
-    color: #5d9238;
+    color: #b7b8b7;
     -webkit-transition: all 0.3s linear;
     -o-transition: all 0.3s linear;
     transition: all 0.3s linear; }
