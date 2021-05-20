@@ -37,6 +37,12 @@
     </div>
     <div class="card-show-dog-infos">
       <h1><%= @dog.name %></h1>
+      <% unless @dog.rating.nil? %>
+        <p class="star-icons">
+          <%= "<i class='fas fa-star active'></i>".html_safe * @dog.rating %>
+          <%= "<i class='fas fa-star'></i>".html_safe * (5 - @dog.rating) %>
+        </p>
+      <% end %>
       <p><%= "Race: #{@dog.breed}" %></p>
       <p><%= "Age: #{@dog.age}" %></p>
       <p><%= "Couleur #{@dog.color}" %></p>

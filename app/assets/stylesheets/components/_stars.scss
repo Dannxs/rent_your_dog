@@ -1,0 +1,11 @@
+.star-icons {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  i {
+    margin-right: 2px;
+  }
+  i.active {
+    color: $yellow;
+  }
+}
