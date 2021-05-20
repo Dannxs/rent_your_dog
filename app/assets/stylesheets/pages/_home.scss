@@ -312,12 +312,12 @@ p {
     width: 80%; } }
 
 .dk-footer {
-  padding: 75px 0 0;
-  background-color: #3E7995;
+    padding: 24px 0 0;
+  background-color: #c4bdbd;
   position: relative;
   z-index: 2; }
   .dk-footer .contact-us {
-    margin-top: 0;
+    margin-top: 20px;
     margin-bottom: 30px;
     padding-left: 80px; }
     .dk-footer .contact-us .contact-info {
@@ -389,7 +389,7 @@ p {
     font-size: 18px;
     font-weight: 700;
     margin-left: 20px;
-    padding-top: 15px; }
+   }
 
 .footer-info-text {
   margin: 26px 0 32px; }
@@ -501,9 +501,11 @@ p {
     margin-bottom: 0; }
 
 .copyright {
-  padding: 28px 0;
-  margin-top: 55px;
-  background-color: #2e2e2e; }
+  padding: 8px 0;
+  margin-top: 0px;
+  background-color: #2e2e2e;
+ }
+
   .copyright span,
   .copyright a {
     color: #b7b8b7;
