@@ -1,0 +1,32 @@
+
+<div style=container>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:300,400,600i&display=swap" rel="stylesheet">
+</head>
+<header> Thank you for your order! </header>
+<div class="infocardContainer">
+  <div id="main">
+    <%= cl_image_tag @booking.dog.photos.first.key, height: 100, crop: :thumb %>
+  </div>
+  <div id="textbois">
+    <h2><%= "#{@booking.dog.name}"%></h2>
+    <h4><%="Start date: #{@booking.start_date}" %></h4>
+    <h4><%= "End date #{@booking.end_date}" %></h4>
+  </div>
+</div>
+</div>
+
+<div class=button-show>
+    <%= link_to "Dashboard", dashboard_path, class: "btn btn-gradient" %>
+    <%= link_to "Dog's List", dogs_path, class: "btn btn-gradient" %>
+  </div>
+  </div>
+<!-- </div>
+<div class="booking-dog-card">
+<%= "Book #{@booking.dog.name}" %>
+<%= "Start date: #{@booking.start_date}" %>
+<%= "End date #{@booking.end_date}" %>
+<%= "Total Price: #{@booking.price}" %>
+<%= "Dog owner's name: #{@booking.dog.user.first_name}"%>
+</div> -->
+
