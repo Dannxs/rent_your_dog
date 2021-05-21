@@ -3,6 +3,7 @@
   li {
     margin: auto 10px;
     color: black;
+    font-weight: bold;
   }
 }
 
@@ -11,18 +12,18 @@
 }
 
 .navbar a {
-  color: black;
+  color: rgb(255, 255, 255);
   font-weight: bold;
   &:hover {
     text-decoration: none;
-    color: white;
+    color: rgb(0, 0, 0);
     border-bottom: solid white;
   }
 }
 
 .navbar-rent-your-dog {
   justify-content: space-between;
-  background: #d0c4c4;
+  background: rgba(140, 82, 158, 0.8);
 }
 
 .navbar-rent-your-dog .navbar-collapse {
@@ -31,4 +32,8 @@
 
 .navbar-rent-your-dog .navbar-brand img {
   width: 40px;
+}
+
+.text-dark{
+  color: #000000 !important;
 }

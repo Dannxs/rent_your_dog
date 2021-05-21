@@ -1,12 +1,23 @@
 class DogsController < ApplicationController
   def index
-    @dogs = Dog.near(params[:dog][:address], 30)
-    @markers = @dogs.geocoded.map do |dog|
-      {
-        lat: dog.latitude,
-        lng: dog.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { dog: dog }),
-      }
+    if params.dig(:dog,:address)
+      @dogs = Dog.near(params.dig(:dog,:address), 30)
+      @markers = @dogs.geocoded.map do |dog|
+        {
+          lat: dog.latitude,
+          lng: dog.longitude,
+          infoWindow: render_to_string(partial: "info_window", locals: { dog: dog }),
+        }
+      end
+    else
+      @dogs = Dog.near("Paris france", 10)
+      @markers = @dogs.geocoded.map do |dog|
+        {
+          lat: dog.latitude,
+          lng: dog.longitude,
+          infoWindow: render_to_string(partial: "info_window", locals: { dog: dog }),
+        }
+      end
     end
   end
 
