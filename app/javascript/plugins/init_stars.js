@@ -1,6 +1,7 @@
 const initStars = () => {
-  const star_icons = document.querySelector('fieldset').querySelectorAll('.form-check');
-  if (star_icons) {
+  const starsForm = document.querySelector('#stars-form')
+  if (starsForm) {
+    const star_icons = document.querySelector('fieldset').querySelectorAll('.form-check');
     const getActive = (star) => {
       star.addEventListener('mouseover', () => {
         if (!star.querySelector('i').classList.contains('clicked')) {
