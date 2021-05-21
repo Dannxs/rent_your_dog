@@ -48,3 +48,5 @@ document.addEventListener('turbolinks:load', () => {
   initAutocomplete();
   initNavbar();
 });
+
+import "controllers";
