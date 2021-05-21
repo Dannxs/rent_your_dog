@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :dogs do
     resources :bookings, only: [ :new, :create ]
   end
-  resources :bookings, only: [:update] do
+  resources :bookings, only: [:update, :show] do
     resources :reviews, only: [:new, :create]
   end
   devise_for :users

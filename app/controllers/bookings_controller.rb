@@ -10,7 +10,7 @@ class BookingsController < ApplicationController
     @booking.dog = @dog
     @booking.user = current_user
     if @booking.save!
-      redirect_to dog_path(@dog)
+      redirect_to booking_path(@booking)
     else
       render :new
     end
@@ -32,6 +32,10 @@ class BookingsController < ApplicationController
       @booking.cancelled!
     end
     redirect_to dashboard_path
+  end
+
+  def show
+    @booking = Booking.find(params[:id])
   end
 
   private
