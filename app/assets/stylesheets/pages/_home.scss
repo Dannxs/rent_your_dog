@@ -3,6 +3,12 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
+html body {
+  // background-image: url("https://image.freepik.com/photos-gratuite/tir-horizontal-champ-fleurs-eternelles-chien-brun-istrie-croatie_181624-24267.jpg");
+  background-color: #fafafa;
+  margin: 0 0 0 0;
+}
+
 body {
   background: HSLA(0, 0%, 96%, 1.00);
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
@@ -184,7 +190,7 @@ p {
 
 .dk-footer {
     padding: 24px 0 0;
-  background-color: #c4bdbd;
+  background-color: rgba(140, 82, 158, 0.4);;
   position: relative;
   z-index: 2; }
   .dk-footer .contact-us {
@@ -294,12 +300,10 @@ p {
   margin-bottom: 27px; }
 
 .footer-widget a {
-  color: #dfdbdb;
+  color: black;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s; }
-  .footer-widget a:hover {
-    color: #8dbaeb; }
 
 .footer-widget:after {
   content: "";

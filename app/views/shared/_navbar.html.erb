@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-rent-your-dog">
+<div id="navbar_top" class="navbar navbar-expand-sm navbar-light navbar-rent-your-dog">
   <%= link_to "/", class: "navbar-brand", id: "home-page" do %>
     <%= image_tag "logo.png" %>
   <% end %>
@@ -11,7 +11,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <%= link_to 'My Dashboard', dashboard_path %>
+        <%= link_to 'My Dashboard', dashboard_path, class: "text-dark" %>
       </li>
       <% if user_signed_in? %>
       <li class="nav-item ">
