@@ -46,7 +46,7 @@ document.addEventListener('turbolinks:load', () => {
   initMapbox();
   initStars();
   initAutocomplete();
-  initNavbar();
+  // initNavbar();
 });
 
 import "controllers";
