@@ -49,7 +49,7 @@
       <p><%= "Taille: #{@dog.size}" %></p>
       <p><%= @dog.is_sterilized ? "#{@dog.name} est stérilisé(e)" : "#{@dog.name} n'est pas stérilisé(e)" %></p>
       <div class=btn-show-rent>
-        <%= link_to 'Rent dog', new_dog_booking_path(@dog), class: "btn btn-success rounded btn-lg btn-block mt-4" %>
+        <%= link_to "Rent #{@dog.name}", new_dog_booking_path(@dog), class: "btn btn-success rounded btn-lg btn-block mt-4" %>
       </div>
     </div>
   </div>
