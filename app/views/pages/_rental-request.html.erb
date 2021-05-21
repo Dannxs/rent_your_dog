@@ -28,7 +28,7 @@
     </div>
     <div class="my-rental-request-status">
       <% if DateTime.now - booking.end_date > 0 && booking.review.nil? %>
-        <%= link_to new_booking_review_path(dog) do %>
+        <%= link_to new_booking_review_path(booking) do %>
           <div class="leave-a-review">
             <p>Did your enjoy your time with <%= dog.name %> ? Leave a review !</p>
           </div>
