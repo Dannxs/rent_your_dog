@@ -19,7 +19,7 @@ class ReviewsController < ApplicationController
       @dog.rating = ratings.sum.fdiv(ratings.count).round
     end
     @dog.save
-    redirect_to dog_path(@dog)
+    redirect_to dashboard_path
   end
 
   private
