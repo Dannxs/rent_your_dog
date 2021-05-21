@@ -9,113 +9,60 @@
 
   </ul>
 
-
-  <div class="my-dogs">
-    <% current_user.dogs.each do |dog| %>
-    <h3><%= dog.name %></h3>
-    <div class="my-dogs-grid">
-      <div class="my-dogs-card">
-        <% if !dog.photos.empty? %>
-        <div class="my-dogs-card-img" style="background-image: url('<%= cl_image_path dog.photos.first.key, height: 100, crop: :thumb %>');">
-        <% else %>
-        <div class="my-dogs-card-img" style="background-image: url('<%= image_path "dog" %>');">
-        <% end %>
-        </div>
-        <div class="my-dogs-card-infos">
-          <div class="my-dogs-card-text">
-            <p><span><%= dog.name %></span> - <%= dog.age %> ans (<%= dog.breed %>) </p>
-              <% unless dog.rating.nil? %>
-                <p class="star-icons">
-                  <%= "<i class='fas fa-star active'></i>".html_safe * dog.rating %>
-                  <%= "<i class='fas fa-star'></i>".html_safe * (5 - dog.rating) %>
-                </p>
-              <% end %>
-          </div>
-          <p><em><%= dog.color %> / <%= dog.size %></em></p>
-          <div class="my-dogs-card-buttons">
-          <%= link_to 'See', dog_path(dog), class: 'btn btn-primary' %>
-          <%= link_to 'Edit', edit_dog_path(dog), class: 'btn btn-info' %>
-          <%= link_to 'Delete', dog_path(dog), method: :delete, data: { confirm: 'Are you sure you want to delete this dog ?'}, class: 'btn btn-danger' %>
-          </div>
-        </div>
-      </div>
-
-      <div class="my-dogs-requests">
-        <h4>Pending Requests</h4>
-        <% pending_bookings = dog.bookings.where(status: 'pending').order('created_at desc') %>
-        <% if pending_bookings == [] %>
-        <div class="no-pending-message">
-          <p>You don't have any pending requests for <%= dog.name %></p>
-        </div>
-        <% else %>
-        <div class="request-cards">
-          <% pending_bookings.each do |booking| %>
-          <div class="request-card">
-            <div class="request-card-left">
-            <% if booking.user.photo.attached? %>
-              <%= cl_image_tag booking.user.photo.key, class: 'avatar dropdown-toggle', id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-            <% else %>
-              <%= image_tag 'blank_avatar', class: 'avatar dropdown-toggle', id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-            <% end %>
-            </div>
-            <div class="request-card-right">
-              <p>Request from <%= booking.user.first_name %> <%= booking.user.last_name %></p>
-              <p> From <%= booking.start_date %> to <%= booking.end_date %> </p>
-              <div class="request-card-buttons">
-                <%= simple_form_for booking do |f| %>
-                  <% f.button :submit, 'Accept', class: 'btn btn-success' %>
-                <% end %>
-                <%= simple_form_for booking do |f| %>
-                  <% f.button :submit, 'Decline', class: 'btn btn-danger' %>
-                <% end %>
-              </div>
-            </div>
-          </div>
-          <% end %>
-        </div>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="request-history-cards">
-      <h4>Requests history for <%= dog.name %></h4>
-      <% all_bookings = dog.bookings.where.not(status: 'pending').order('created_at desc') %>
-      <% if all_bookings == [] %>
-      <div class="no-pending-message">
-        <p>Your requests history for <%= dog.name %> is empty.</p>
-      </div>
-      <% else %>
-      <div class="request-cards">
-        <% all_bookings.each do |booking| %>
-        <div class="request-card">
-          <div class="request-card-left">
-          <% if booking.user.photo.attached? %>
-            <%= cl_image_tag booking.user.photo.key, class: 'avatar dropdown-toggle', id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+  <div data-controller="update-status">
+    <div class="my-dogs">
+      <% current_user.dogs.each do |dog| %>
+      <h3><%= dog.name %></h3>
+      <div class="my-dogs-grid">
+        <div class="my-dogs-card">
+          <% if !dog.photos.empty? %>
+          <div class="my-dogs-card-img" style="background-image: url('<%= cl_image_path dog.photos.first.key, height: 100, crop: :thumb %>');">
           <% else %>
-            <%= image_tag 'blank_avatar', class: 'avatar dropdown-toggle', id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <div class="my-dogs-card-img" style="background-image: url('<%= image_path "dog" %>');">
           <% end %>
           </div>
-          <div class="request-card-right">
-            <p>Request from <%= booking.user.first_name %> <%= booking.user.last_name %></p>
-            <p> From <%= booking.start_date %> to <%= booking.end_date %> </p>
-            <div class="request-card-buttons">
-              <% case booking.status %>
-              <% when 'accepted' %>
-              <p class='accepted-message'>You accepted this request</p>
-              <% when 'refused' %>
-              <p class='refused-message'>You refused this request</p>
-              <% when 'cancelled' %>
-              <p class='refused-message'><%= booking.user.first_name %> cancelled this request</p>
-              <% end %>
+          <div class="my-dogs-card-infos">
+            <div class="my-dogs-card-text">
+              <p><span><%= dog.name %></span> - <%= dog.age %> ans (<%= dog.breed %>) </p>
+                <% unless dog.rating.nil? %>
+                  <p class="star-icons">
+                    <%= "<i class='fas fa-star active'></i>".html_safe * dog.rating %>
+                    <%= "<i class='fas fa-star'></i>".html_safe * (5 - dog.rating) %>
+                  </p>
+                <% end %>
+            </div>
+            <p><em><%= dog.color %> / <%= dog.size %></em></p>
+            <div class="my-dogs-card-buttons">
+            <%= link_to 'See', dog_path(dog), class: 'btn btn-primary' %>
+            <%= link_to 'Edit', edit_dog_path(dog), class: 'btn btn-info' %>
+            <%= link_to 'Delete', dog_path(dog), method: :delete, data: { confirm: 'Are you sure you want to delete this dog ?'}, class: 'btn btn-danger' %>
             </div>
           </div>
         </div>
-        <% end %>
+
+        <div class="my-dogs-requests">
+          <h4>Pending Requests</h4>
+          <div class="pending-requests" data-update-status-target='accept'>
+            <%= render 'pending-request', dog: dog %>
+          </div>
+        </div>
       </div>
-      <% end %>
+
+      <div class="request-history-cards">
+        <h4>Requests history for <%= dog.name %></h4>
+        <div class="request-history" data-update-status-target='history'>
+          <%= render 'request-history', dog: dog %>
+        </div>
+      </div>
+      <hr>
+    <% end %>
     </div>
-    <hr>
-  <% end %>
+
+    <div class="my-rental-requests">
+      <div class="rental-requests" data-update-status-target="rental">
+        <%= render 'rental-request' %>
+      </div>
+    </div>
   </div>
 
 
@@ -149,67 +96,6 @@
     </div>
   </div>
 
-  <div class="my-rental-requests">
-    <% current_user.bookings.order('created_at desc').each do |booking| %>
-    <div class="my-rental-request">
-      <% dog = booking.dog %>
-      <% if !dog.photos.empty? %>
-      <div class="my-rental-request-img" style="background-image: url('<%= cl_image_path dog.photos.first.key, height: 100, crop: :thumb %>');">
-      <% else %>
-      <div class="my-rental-request-img" style="background-image: url('<%= image_path "dog" %>');">
-      <% end %>
-      </div>
-      <div class="my-rental-request-right">
-        <div class="my-rental-request-infos">
-          <div class="my-rental-request-infos-dog">
-            <p><span><%= dog.name %></span> - <%= dog.age %> ans (<%= dog.breed %>) </p>
-            <p><em><%= dog.color %> / <%= dog.size %></em></p>
-          </div>
-          <div class="my-rental-request-infos-dog-owner">
-            <p>Dog owner: <%= dog.user.first_name %> <%= dog.user.last_name %></p>
-            <% if dog.user.photo.attached? %>
-            <%= cl_image_tag dog.user.photo.key, class: 'avatar dropdown-toggle', id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-            <% else %>
-            <%= image_tag 'blank_avatar', class: 'avatar dropdown-toggle', id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-            <% end %>
-          </div>
-        </div>
-        <div class="my-rental-request-dates">
-          <p> From <%= booking.start_date %> to <%= booking.end_date %> </p>
-        </div>
-        <div class="my-rental-request-status">
-          <% if DateTime.now - booking.end_date > 0 && booking.review.nil? %>
-            <%= link_to new_booking_review_path(dog) do %>
-              <div class="leave-a-review">
-                <p>Did your enjoy your time with <%= dog.name %> ? Leave a review !</p>
-              </div>
-            <% end %>
-          <% elsif DateTime.now - booking.end_date > 0 %>
-            <div class="left-review">
-              <p>Thanks for the review your left for <%= dog.name %>!</p>
-            </div>
-          <% else %>
-            <div class="rental-request-message">
-            <% case booking.status %>
-            <% when "pending" %>
-              <p class='pending-message'><%= dog.user.first_name %> did not respond to your request yet</p>
-              <%= simple_form_for booking do |f| %>
-                <% f.button :submit, 'Cancel', class: 'btn btn-warning' %>
-              <% end %>
-            <% when "accepted" %>
-              <p class='accepted-message'><%= dog.user.first_name %> accepted your request</p>
-            <% when "refused" %>
-              <p class='refused-message'><%= dog.user.first_name %> refused your request</p>
-            <% when "cancelled" %>
-              <p class='refused-message'>You canceled your request</p>
-            <% end %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <% end %>
-  </div>
 
   <div class="my-informations">
     <div class="row">

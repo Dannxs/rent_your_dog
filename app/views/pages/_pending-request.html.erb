@@ -1,0 +1,40 @@
+<% pending_bookings = dog.bookings.where(status: 'pending').order('created_at desc') %>
+<% if pending_bookings == [] %>
+<div class="no-pending-message">
+  <p>You don't have any pending requests for <%= dog.name %></p>
+</div>
+<% else %>
+<div class="request-cards">
+  <% pending_bookings.each do |booking| %>
+  <div class="request-card">
+    <div class="request-card-left">
+    <% if booking.user.photo.attached? %>
+      <%= cl_image_tag booking.user.photo.key, class: 'avatar dropdown-toggle', id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+    <% else %>
+      <%= image_tag 'blank_avatar', class: 'avatar dropdown-toggle', id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+    <% end %>
+    </div>
+    <div class="request-card-right">
+      <p>Request from <%= booking.user.first_name %> <%= booking.user.last_name %></p>
+      <p> From <%= booking.start_date %> to <%= booking.end_date %> </p>
+      <div class="request-card-buttons">
+        <%= simple_form_for(booking, data: {
+                      update_status_target: 'acceptForm',
+                      action: 'submit->update-status#send'
+                    }) do |f| %>
+          <%= hidden_field_tag 'commit', 'Accept' %>
+          <%= f.button :submit, 'Accept', class: 'btn btn-success' %>
+        <% end %>
+        <%= simple_form_for(booking, data: {
+                      update_status_target: 'refuseForm',
+                      action: 'submit->update-status#send'
+                    }) do |f| %>
+          <%= hidden_field_tag 'commit', 'Decline' %>
+          <%= f.button :submit, 'Decline', class: 'btn btn-danger' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+<% end %>

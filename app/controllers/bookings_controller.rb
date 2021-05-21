@@ -31,7 +31,10 @@ class BookingsController < ApplicationController
     if @booking.user == current_user && params[:commit] == 'Cancel'
       @booking.cancelled!
     end
-    redirect_to dashboard_path
+    respond_to do |format|
+      format.html { redirect_to dashboard_path }
+      format.json { render json: success_data }
+    end
   end
 
   def show
@@ -42,5 +45,13 @@ class BookingsController < ApplicationController
 
   def booking_params
     params.require(:booking).permit(:start_date, :end_date, :price, :status)
+  end
+
+  def success_data
+    {
+      inserted_item: render_to_string(partial: 'pages/pending-request.html', locals: { dog: @booking.dog }),
+      history_item: render_to_string(partial: 'pages/request-history.html', locals: { dog: @booking.dog }),
+      rental_item: render_to_string(partial: 'pages/rental-request.html')
+    }
   end
 end

@@ -45,3 +45,5 @@ document.addEventListener('turbolinks:load', () => {
   initStars();
   initAutocomplete();
 });
+
+import "controllers";
