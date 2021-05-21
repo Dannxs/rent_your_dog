@@ -1,14 +1,17 @@
 class ReviewsController < ApplicationController
   def new
     @review = Review.new
-    @dog = Dog.find(params[:dog_id])
+    @booking = Booking.find(params[:booking_id])
   end
 
   def create
     @review = Review.new(review_params)
-    @dog = Dog.find(params[:dog_id])
-    @review.dog = @dog
+    @booking = Booking.find(params[:booking_id])
+    @review.booking = @booking
+    @review.dog = @booking.dog
+    @review.user = @booking.user
     @review.save
+    @dog = @booking.dog
     if @dog.reviews.count == 1
       @dog.rating = @dog.reviews.first.rating
     else
@@ -16,7 +19,7 @@ class ReviewsController < ApplicationController
       @dog.rating = ratings.sum.fdiv(ratings.count).round
     end
     @dog.save
-    redirect_to root_path
+    redirect_to dog_path(@dog)
   end
 
   private
