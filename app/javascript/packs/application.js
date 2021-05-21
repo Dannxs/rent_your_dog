@@ -29,6 +29,8 @@ import { initTabsClick } from "../plugins/init_tabs_click";
 import { initMapbox } from '../plugins/init_mapbox';
 import { initStars } from '../plugins/init_stars';
 import { initAutocomplete } from "../plugins/init_autocomplete";
+import { initNavbar } from "../plugins/init_navbar";
+
 
 // CSS
 // import 'mapbox-gl/dist/mapbox-gl.css';
@@ -44,4 +46,5 @@ document.addEventListener('turbolinks:load', () => {
   initMapbox();
   initStars();
   initAutocomplete();
+  initNavbar();
 });

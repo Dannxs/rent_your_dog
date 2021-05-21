@@ -11,7 +11,7 @@
           <% end %>
         </ol><!-- /.carousel-indicators -->
         <div class="carousel-inner">
-          <div class="carousel-item active">
+          <div id="carousel-show" class="carousel-item active">
             <%= cl_image_tag @dog.photos.first.key, :class => "w-100" %>
           </div>
           <% photo_num = @dog.photos.first.id + 1 %>
