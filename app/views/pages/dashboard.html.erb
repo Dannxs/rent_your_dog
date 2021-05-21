@@ -17,7 +17,7 @@
           <% if !dog.photos.empty? %>
           <div class="my-dogs-card-img" style="background-image: url('<%= cl_image_path dog.photos.first.key, height: 100, crop: :thumb %>');">
           <% else %>
-          <div class="my-dogs-card-img" style="background-image: url('<%= image_path "dog" %>');">
+          <div class="my-dogs-card-img" style="background-image: url('<%= image_path "dog.jpg" %>');">
           <% end %>
           </div>
           <div class="my-dogs-card-infos">
