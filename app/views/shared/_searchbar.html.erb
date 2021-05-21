@@ -1,0 +1,8 @@
+<div class="container">
+  <%= form_for( :dog, :html => { class: "product-search m-4 d-flex justify-content-center" }, url:dogs_path, method: :get) do |f| %>
+    <div class="search-element">
+      <%= f.text_field :address, :placeholder => "What is your address ?", :class => "search-input", required: true %>
+      <%= f.submit "Look for a dog", :class => "search-button"%>
+    </div>
+  <% end %>
+</div>

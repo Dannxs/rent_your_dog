@@ -1,0 +1,39 @@
+.review-form {
+  margin-top: 40px;
+}
+
+.review-form span input {
+  display: none;
+}
+
+.review-form i {
+  color: $gray;
+}
+
+.form-check i.active {
+  color: $yellow;
+}
+
+.form-check i:hover {
+    text-decoration: none;
+}
+
+i.active {
+  border-bottom: none;
+}
+
+fieldset.review_rating {
+  display: flex;
+  // flex-direction: row-reverse;
+  // justify-content: flex-end;
+  .form-check {
+    padding-left: 0;
+    padding-right: 5px;
+  }
+}
+
+// .review-form {
+//   background-color: white;
+//   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+//   padding: 24px;
+// }

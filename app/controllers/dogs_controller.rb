@@ -1,6 +1,6 @@
 class DogsController < ApplicationController
   def index
-    @dogs = Dog.all
+    @dogs = Dog.near(params[:dog][:address], 30)
     @markers = @dogs.geocoded.map do |dog|
       {
         lat: dog.latitude,
@@ -21,10 +21,10 @@ class DogsController < ApplicationController
   def create
     @dog = Dog.new(dog_params)
     @dog.user = current_user
-      if @dog.save!
+      if @dog.save
         redirect_to dog_path(@dog)
       else
-        render :new
+        render "pages/dashboard"
       end
   end
 

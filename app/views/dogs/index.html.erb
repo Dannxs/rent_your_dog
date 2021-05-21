@@ -1,5 +1,5 @@
-<h1>Dogs in your area</h1>
-
+<h1 class="">Dogs in your area</h1>
+<%= render 'shared/searchbar' %>
   <div class="row">
     <div class="col-8 cards-container">
       <% @dogs.each do |dog| %>
@@ -10,7 +10,12 @@
                 <h2><%= dog.name %></h2>
                 <p><%= dog.description %></p>
               </div>
-              <h2 class="card-dog-rating"><%= dog.rating %>/5</h2>
+              <% unless dog.rating.nil? %>
+                <p class="star-icons">
+                  <%= "<i class='fas fa-star active'></i>".html_safe * dog.rating %>
+                  <%= "<i class='fas fa-star'></i>".html_safe * (5 - dog.rating) %>
+                </p>
+              <% end %>
             </div>
         <% end %>
       <% end %>

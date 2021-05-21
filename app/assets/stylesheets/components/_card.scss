@@ -29,6 +29,9 @@
 
 .my-dogs-card-text {
   padding-top: 15px;
+  display: flex;
+  align-items: center;
+  padding-right: 15px;
 }
 
 .my-dogs-card-buttons {
@@ -101,6 +104,16 @@
   position: relative;
 }
 
+.card-dog:hover {
+  text-decoration: none;
+}
+
+.card-dog-infos {
+  .star-icons i {
+    color: $gray;
+  }
+}
+
 .request-cards {
   height: 250px;
   overflow: scroll;
@@ -139,11 +152,6 @@
     font-size: 12px;
   }
 }
-
-// .my-rental-requests {
-//   display: flex;
-//   flex-direction: column;
-// }
 
 .my-rental-request {
   margin-bottom: 20px;

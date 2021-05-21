@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-12 col-lg-6 offset-lg-3">
+    <div class="review-form" id="stars-form">
+      <h2>Leave a review for <%= @booking.dog.name %></h2>
+      <%= simple_form_for [@booking, @review] do |f| %>
+        <%= f.input :content %>
+        <%= f.input :rating, as: :radio_buttons, collection: (1..5).to_a.map { |n| [n, "<i class='fas fa-star'></i>".html_safe] }, value_method: :first, label_method: :second, input_html: { style: "display: none" } %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+

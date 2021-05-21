@@ -27,9 +27,11 @@ import "bootstrap";
 import { initFlatpickr } from "../plugins/flatpickr";
 import { initTabsClick } from "../plugins/init_tabs_click";
 import { initMapbox } from '../plugins/init_mapbox';
+import { initStars } from '../plugins/init_stars';
+import { initAutocomplete } from "../plugins/init_autocomplete";
 
 // CSS
-import 'mapbox-gl/dist/mapbox-gl.css';
+// import 'mapbox-gl/dist/mapbox-gl.css';
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -40,4 +42,6 @@ document.addEventListener('turbolinks:load', () => {
   initFlatpickr();
   initTabsClick();
   initMapbox();
+  initStars();
+  initAutocomplete();
 });

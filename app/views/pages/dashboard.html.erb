@@ -24,8 +24,14 @@
         <div class="my-dogs-card-infos">
           <div class="my-dogs-card-text">
             <p><span><%= dog.name %></span> - <%= dog.age %> ans (<%= dog.breed %>) </p>
-            <p><em><%= dog.color %> / <%= dog.size %></em></p>
+              <% unless dog.rating.nil? %>
+                <p class="star-icons">
+                  <%= "<i class='fas fa-star active'></i>".html_safe * dog.rating %>
+                  <%= "<i class='fas fa-star'></i>".html_safe * (5 - dog.rating) %>
+                </p>
+              <% end %>
           </div>
+          <p><em><%= dog.color %> / <%= dog.size %></em></p>
           <div class="my-dogs-card-buttons">
           <%= link_to 'See', dog_path(dog), class: 'btn btn-primary' %>
           <%= link_to 'Edit', edit_dog_path(dog), class: 'btn btn-info' %>
@@ -116,12 +122,13 @@
   <div class="add-a-dog mb-5">
     <div class="row">
       <div class="col-12 col-lg-6 offset-lg-3">
-        <h3>Add a dog</h3>
+        <h3 class="text-center">Add a dog</h3>
         <% @dog = Dog.new(user_id: current_user.id) %>
         <%= simple_form_for(@dog) do |f| %>
           <%= f.input :name, :label => "Prénom" %>
           <%= f.input :age, :label => "Age", min: 0 %>
-          <%= f.input :address, label: "Adresse" %>
+          <%= f.label "Adresse"%>
+          <%= f.text_field :address, :class => "search-input", required: true%>
           <%= f.input :color, label: "Couleur" %>
           <%= f.input :breed, :label => "Race" %>
           <%= f.input :description, :label => "Description" %>
@@ -136,7 +143,7 @@
           <% @dog.photos.each do |photo| %>
             <%= cl_image_tag photo.key, height: 200, width: 250, crop: :fill %>
           <% end %>
-          <%= f.submit %>
+          <%= f.submit%>
         <% end %>
       </div>
     </div>
@@ -171,31 +178,55 @@
           <p> From <%= booking.start_date %> to <%= booking.end_date %> </p>
         </div>
         <div class="my-rental-request-status">
-          <div class="rental-request-message">
-          <% case booking.status %>
-          <% when "pending" %>
-            <p class='pending-message'><%= dog.user.first_name %> did not respond to your request yet</p>
-            <%= simple_form_for booking do |f| %>
-              <% f.button :submit, 'Cancel', class: 'btn btn-warning' %>
+          <% if DateTime.now - booking.end_date > 0 && booking.review.nil? %>
+            <%= link_to new_booking_review_path(dog) do %>
+              <div class="leave-a-review">
+                <p>Did your enjoy your time with <%= dog.name %> ? Leave a review !</p>
+              </div>
             <% end %>
-          <% when "accepted" %>
-            <p class='accepted-message'><%= dog.user.first_name %> accepted your request</p>
-          <% when "refused" %>
-            <p class='refused-message'><%= dog.user.first_name %> refused your request</p>
-          <% when "cancelled" %>
-            <p class='refused-message'>You canceled your request</p>
+          <% elsif DateTime.now - booking.end_date > 0 %>
+            <div class="left-review">
+              <p>Thanks for the review your left for <%= dog.name %>!</p>
+            </div>
+          <% else %>
+            <div class="rental-request-message">
+            <% case booking.status %>
+            <% when "pending" %>
+              <p class='pending-message'><%= dog.user.first_name %> did not respond to your request yet</p>
+              <%= simple_form_for booking do |f| %>
+                <% f.button :submit, 'Cancel', class: 'btn btn-warning' %>
+              <% end %>
+            <% when "accepted" %>
+              <p class='accepted-message'><%= dog.user.first_name %> accepted your request</p>
+            <% when "refused" %>
+              <p class='refused-message'><%= dog.user.first_name %> refused your request</p>
+            <% when "cancelled" %>
+              <p class='refused-message'>You canceled your request</p>
+            <% end %>
+            </div>
           <% end %>
-          </div>
         </div>
       </div>
     </div>
-      <% end %>
+    <% end %>
   </div>
 
   <div class="my-informations">
     <div class="row">
-      <div class="col-12 col-lg-6 offset-lg-3">
-
+      <div class="info-dash col-12 col-lg-6 offset-lg-3">
+        <h6>First Name</h6>
+        <p><%= current_user.first_name %></p>
+        <h6>Last Name</h6>
+        <p><%= current_user.last_name %></p>
+        <h6>Email address</h6>
+        <p><%= current_user.email %></p>
+        <h6>Age</h6>
+        <p><%= current_user.age %></p>
+        <h6>Address</h6>
+        <p><%= current_user.address %></p>
+        <h6>Gender</h6>
+        <p><%= current_user.gender %></p>
+        <%= link_to "Edit your profile", "/users/edit", class: 'btn btn-info btn-block' %>
       </div>
     </div>
   </div>
